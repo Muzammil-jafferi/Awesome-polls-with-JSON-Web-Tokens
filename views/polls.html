@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Awesome Polls</title>
+    	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    	<script type="text/javascript" src="https://cdn.auth0.com/js/lock/10.3/lock.min.js"></script>
+</head>
+<body>
+<div class="clearfix">
+	<div class="pull-left">
+		<i class="fa fa-lg fa-pie-chart"></i>
+		<span> Awesome Polls</span>
+	</div>
+	<div class="pull-right">
+		<img src="{{user.picture}}" style="height:24px; border-radius: 30px;" alt="">
+		<strong style="margin: 0px 10px;"> {{ user.nickname }}</strong>
+  		<a href="/logout"> Logout </a>
+	</div>
+	<br>
+	<div class="jumbotron">
+		<h1 class="text-center"> 2016 Presidential Election </h1>
+		{% for poll,index in polls %}
+		{% if (poll.estimates.length > 0) %}
+			<div class="col-sm-4"> 
+			<div class="panel panel-default" style="min-height: 150px;">
+				<div class="panel-title">
+					<div class="panel-heading">{{poll.short_title}}</div>
+				</div>
+				<div class="panel-body" style="min-height: 100px;">
+				<ul class="list-unstyled">
+					{% for person,index in poll.estimates %}
+					<li> {% if (index == 0 ) %} 
+							<p>  <strong> {{ person.choice }} </strong></p>
+							<div class="progress"> 
+							<div class="progress-bar progress-bar-success" style="width: {{person.value}}%", role="progressbar">
+							<span> {{ person.value }}</span>
+							</div>
+							</div>
+						 {% else %}
+						 <p>  <span> {{ person.choice }} </span></p>
+							<div class="progress"> 
+							<div class="progress-bar progress-bar-success" style="width: {{person.value}}%", role="progressbar">
+							<span> {{ person.value }}</span>
+							</div>
+							</div>
+							{% endif %}
+					</li>
+					{% endfor %}
+				</ul>
+				</div>
+				</div>
+			</div>
+			{% endif %}
+			{% endfor %}
+
+			
+			</div>	
+	</div>
+  <!-- each poll, index in polls
+    if (poll.estimates.length > 0)
+      div.col-sm-4
+        div(class="panel panel-default", style="min-height: 150px;")
+          div.panel-title
+            div.panel-heading=poll.short_title
+          div(class="panel-body", style="min-height: 100px;")
+            ul.list-unstyled
+              each person, index in poll.estimates
+                li
+                  if index == 0
+                    p
+                      strong #{person.choice}
+                    div.progress
+                      div(class="progress-bar progress-bar-success", style="width: #{person.value}%", role="progressbar")
+                        span=person.value
+                  else
+                    p
+                      span #{person.choice}
+                    div.progress
+                      div(class="progress-bar progress-bar-info", style="width: #{person.value}%", role="progressbar")
+                        span=person.value
+          div.panel-footer
+            a.btn.btn-sm View Results  
+            a.btn.btn-sm.write-report Write Report
+ -->
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "awesomepolls",
+  "version": "1.0.0",
+  "description": "Simple poll app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "muzzu",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "connect-ensure-login": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.6.8",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "jade": "^1.11.0",
+    "morgan": "^1.8.2",
+    "nunjucks": "^3.0.1",
+    "passport": "^0.3.2",
+    "passport-auth0": "^0.6.0"
+  }
+}
